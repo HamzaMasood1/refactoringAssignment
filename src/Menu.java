@@ -1563,6 +1563,9 @@ public class Menu extends JFrame{
 				
 				
 				AccountTransaction transaction = new AccountTransaction(date2, type, amount);
+				transacationModel.addRow(new Object[] { date2, type, amount });
+				transactonTable = new JTable();
+				transactonTable.setModel(transacationModel);
 				acc.getTransactionList().add(transaction);
 				
 			 JOptionPane.showMessageDialog(f, balance + euro + " added do you account!" ,"Lodgement",  JOptionPane.INFORMATION_MESSAGE);
