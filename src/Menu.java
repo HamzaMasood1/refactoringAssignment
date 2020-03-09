@@ -1,6 +1,9 @@
 import java.awt.*;
 
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -1629,7 +1632,7 @@ public class Menu extends JFrame{
 				 
 					
 					
-			}	
+			}	 
 	     });
 		
 		returnButton.addActionListener(new ActionListener(  ) {
@@ -1653,6 +1656,27 @@ public class Menu extends JFrame{
 	    return false;  
 	  }  
 	  return true;  
+	}
+	
+	public ArrayList<String> readFile(String path) {
+		ArrayList<String> stringArrayList = new ArrayList<>();
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(path));
+			String line = reader.readLine();
+			stringArrayList.add(line);
+			while (line != null) {
+				// System.out.println(line);
+				// read next line
+				line = reader.readLine();
+				stringArrayList.add(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return stringArrayList;
 	}
 }
 
