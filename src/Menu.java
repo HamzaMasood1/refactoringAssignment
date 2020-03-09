@@ -909,13 +909,13 @@ public class Menu extends JFrame{
 				JPanel textPanel = new JPanel();
 				
 				textPanel.setLayout( new BorderLayout() );
-				JTextArea textArea = new JTextArea(40, 20);
-				textArea.setEditable(false);
+				transactonTable = new JTable(transacationModel);
+				//textArea.setEditable(false);
 				textPanel.add(label1, BorderLayout.NORTH);
-				textPanel.add(textArea, BorderLayout.CENTER);
+				textPanel.add(transactonTable, BorderLayout.CENTER);
 				textPanel.add(returnButton, BorderLayout.SOUTH);
 				
-				JScrollPane scrollPane = new JScrollPane(textArea);
+				JScrollPane scrollPane = new JScrollPane(transactonTable);
 				textPanel.add(scrollPane);
 				
 			for (int a = 0; a < customerList.size(); a++)//For each customer, for each account, it displays each transaction.
@@ -925,8 +925,15 @@ public class Menu extends JFrame{
 						acc = customerList.get(a).getAccounts().get(b);
 						for (int c = 0; c < customerList.get(a).getAccounts().get(b).getTransactionList().size(); c++)
 						{
+							AccountTransaction accountTransaction = (AccountTransaction) customerList.get(a)
+									.getAccounts().get(b).getTransactionList().get(c);
+
+							// table.append(acc.getTransactionList().get(c).toString());
+							transacationModel.addRow(new Object[] { accountTransaction.getDate(),
+									accountTransaction.getType(), accountTransaction.getAmount() });
+							transactonTable.setModel(transacationModel);
 							
-							textArea.append(acc.getTransactionList().get(c).toString());
+							
 							//Int total = acc.getTransactionList().get(c).getAmount(); //I was going to use this to keep a running total but I couldnt get it  working.
 							
 						}				
