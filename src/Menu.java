@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -16,7 +18,7 @@ import java.util.Date;
 
 public class Menu extends JFrame{
 	
-	private ArrayList<Customer> customerList = new ArrayList<Customer>();
+	private static ArrayList<Customer> customerList = new ArrayList<Customer>();
     private int position = 0;
 	private String password;
 	private Customer customer = null;
@@ -33,12 +35,23 @@ public class Menu extends JFrame{
 	 JPanel panel2;
 		JButton add;
 		String 	PPS,firstName,surname,DOB,CustomerID;
+		JTable transactonTable;
 	
-	public static void main(String[] args)
-	{
-		Menu driver = new Menu();
-		driver.menuStart();
-	}
+		static DefaultTableModel customerModel;
+		static DefaultTableModel transacationModel;
+		
+		public static void main(String[] args) {
+			Menu driver = new Menu();
+			driver.menuStart();
+
+			customerModel = new DefaultTableModel(new Object[][] {},
+					new Object[] { "PPS Number", "Surname", "First Name", "Customer ID" });
+
+			transacationModel = new DefaultTableModel(new Object[][] {}, new Object[] { "Date", "Type", "Amount" });
+
+			
+
+		}
 	
 	public void menuStart()
 	{
