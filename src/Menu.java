@@ -289,7 +289,9 @@ public class Menu extends JFrame{
 					    	
 					    if(cont)
 					    {
-						f1.dispose();
+					    	if (f1 != null) {
+								f1.dispose();
+							}
 					    	loop = false;
 					    admin();					    
 					    }					    
