@@ -1661,6 +1661,16 @@ public class Menu extends JFrame{
 		
 					AccountTransaction transaction = new AccountTransaction(date2, type, amount);
 					acc.getTransactionList().add(transaction);
+					
+					try {
+						appendData("Transactions.txt", "\n" + transaction.toString());
+					} catch (IOException e2) {
+						e2.printStackTrace();
+					}
+
+					transacationModel.addRow(new Object[] { date2, type, amount });
+					transactonTable = new JTable();
+					transactonTable.setModel(transacationModel);
 				 
 				 
 					
