@@ -52,6 +52,9 @@ public class Menu extends JFrame{
 
 			transacationModel = new DefaultTableModel(new Object[][] {}, new Object[] { "Date", "Type", "Amount" });
 
+			ArrayList<String> customerData = driver.readFile("Customer.txt");
+			ArrayList<String> transData = driver.readFile("Transactions.txt");
+			
 			
 
 		}
