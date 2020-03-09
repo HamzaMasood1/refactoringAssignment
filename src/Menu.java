@@ -55,6 +55,24 @@ public class Menu extends JFrame{
 			ArrayList<String> customerData = driver.readFile("Customer.txt");
 			ArrayList<String> transData = driver.readFile("Transactions.txt");
 			
+			for (String str : customerData) {
+				if (str != null) {
+					String[] customerArr = str.split(",");
+					// System.out.println(customerArr[0]);
+					ArrayList<CustomerAccount> accounts = new ArrayList<CustomerAccount>();
+					String id = customerArr[0];
+					customerList.add(new Customer(customerArr[0], customerArr[1], customerArr[2], customerArr[3],
+							customerArr[4], customerArr[5], accounts));
+					customerModel.addRow(new Object[] { customerArr[0], customerArr[1], customerArr[2], customerArr[3],
+							customerArr[4], customerArr[5] });
+
+					/*
+					 * for(String str2: transData){ if(str != null) { String[] transArr =
+					 * str.split(","); transacationModel.addRow(new Object[]{transArr[0],
+					 * transArr[1], transArr[2]}); } }
+					 */
+				}
+			}
 			
 
 		}
