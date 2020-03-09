@@ -1456,22 +1456,22 @@ public class Menu extends JFrame{
 				JPanel textPanel = new JPanel();
 				
 				textPanel.setLayout( new BorderLayout() );
-				JTextArea textArea = new JTextArea(40, 20);
-				textArea.setEditable(false);
+				transactonTable = new JTable(transacationModel);
+				//textArea.setEditable(false);
 				textPanel.add(label1, BorderLayout.NORTH);
-				textPanel.add(textArea, BorderLayout.CENTER);
+				textPanel.add(transactonTable, BorderLayout.CENTER);
 				textPanel.add(returnButton, BorderLayout.SOUTH);
 				
-				JScrollPane scrollPane = new JScrollPane(textArea);
+				JScrollPane scrollPane = new JScrollPane(transactonTable);
 				textPanel.add(scrollPane);
 				
-				for (int i = 0; i < acc.getTransactionList().size(); i ++)
-				{
-					textArea.append(acc.getTransactionList().get(i).toString());
-					
-				}
+//				for (int i = 0; i < acc.getTransactionList().size(); i ++)
+//				{
+//					textArea.append(acc.getTransactionList().get(i).toString());
+//					
+//				}
 				
-				textPanel.add(textArea);
+				textPanel.add(transactonTable);
 				content.removeAll();
 				
 				
