@@ -4,6 +4,9 @@ import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -198,6 +201,11 @@ public class Menu extends JFrame{
 										Customer customer = new Customer(PPS, surname, firstName, DOB, CustomerID, password, accounts);
 											
 										customerList.add(customer);
+										try {
+											appendData("Customer.txt", "\n" + customer.toString());
+										} catch (IOException e1) {
+											e1.printStackTrace();
+										}
 									
 										JOptionPane.showMessageDialog(f, "CustomerID = " + CustomerID +"\n Password = " + password  ,"Customer created.",  JOptionPane.INFORMATION_MESSAGE);
 										menuStart();
@@ -1678,7 +1686,16 @@ public class Menu extends JFrame{
 	  }  
 	  return true;  
 	}
-	
+	private static void appendData(String filename, String data) throws IOException {
+		Path currentRelativePath = Paths.get("");
+		String filePath = currentRelativePath.toAbsolutePath().toString() + "\\" + filename;
+		RandomAccessFile raFile = new RandomAccessFile(filePath, "rw");
+		raFile.seek(raFile.length());
+		System.out.println("current pointer = " + raFile.getFilePointer());
+		raFile.write(data.getBytes());
+		raFile.close();
+
+	}
 	public ArrayList<String> readFile(String path) {
 		ArrayList<String> stringArrayList = new ArrayList<>();
 		BufferedReader reader;
