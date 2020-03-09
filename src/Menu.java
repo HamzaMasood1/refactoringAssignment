@@ -943,7 +943,7 @@ public class Menu extends JFrame{
 				
 				
 				
-				textPanel.add(textArea);
+				textPanel.add(transactonTable);
 				content.removeAll();
 				
 				
